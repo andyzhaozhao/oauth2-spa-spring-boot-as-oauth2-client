@@ -2,7 +2,7 @@
 普通vue前端工程。调用接口时候需要设置http header的withCredentials为true，
 从而跨域访问时候可以传递cookie给后端，如：
 ```
- axios.get('http://localhost:8050/resource'
+ axios.get('http://localhost:8080/resource'
  , {withCredentials:true})
     .then((data ) => {
         alert("返回值："+JSON.stringify(data))

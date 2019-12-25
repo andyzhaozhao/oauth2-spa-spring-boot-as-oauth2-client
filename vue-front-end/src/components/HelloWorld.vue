@@ -63,27 +63,33 @@
             },
             async getUserInfo() {
                 axios.get(`${process.env.VUE_APP_userUri}`, {withCredentials:true})
-                    .then((data ) => {
-                        alert("获取用户："+JSON.stringify(data))
+                    .then(( data ) => {
+                        alert("获取用户："+JSON.stringify(data.data.user))
+                }, (error) => {
+                    alert("error"+JSON.stringify(error))
                 })
             },
             getResource() {
-                axios.get('http://localhost:8050/resource', {withCredentials:true})
+                axios.get('http://localhost:8080/resource', {withCredentials:true})
                     .then((data ) => {
-                        alert("返回值："+JSON.stringify(data))
+                        alert("返回值："+data.data.name)
                 })
             },
             postResource() {
-                axios.post('http://localhost:8050/resource', {name:"admin",age:66}
+                axios.post('http://localhost:8080/resource', {name:"admin",age:66}
                     ,{withCredentials:true})
                     .then((data ) => {
-                        alert("返回值："+JSON.stringify(data))
+                        alert("返回值："+JSON.stringify(data.data.name))
                     })
             },
             handleLogout() {
                 axios.get(`${process.env.VUE_APP_logoutUri}`, {withCredentials:true})
-                    .then((data ) => {
-                        alert("退出成功:"+data)
+                    .then((data) => {
+                        if(data.status) {
+                            alert("退出成功")
+                        } else {
+                            alert(JSON.stringify(data))
+                        }
                 })
             }
         }
